@@ -1,0 +1,69 @@
+CANVAS_WIDTH = 500
+CANVAS_HEIGHT = 225
+NUM_ROWS = 15
+NUM_COLUMNS = 20
+TRIANGLE_HEIGHT = CANVAS_WIDTH/NUM_COLUMNS
+
+first_color = [178, 206, 222]
+second_color = [140, 223, 214]
+third_color = [109, 192, 213]
+color_scheme = [first_color,second_color,third_color]
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function setup() {
+  let canv = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+  rand = getRandomInt(3)
+  
+  background(50);
+ for(var i = 0;i<NUM_COLUMNS;i++){
+   rand = getRandomInt(3)
+   let color = color_scheme[rand]
+    for(var j = 0;j<NUM_ROWS;j++){
+      noStroke()
+      
+      if(j<NUM_ROWS/2){
+        
+      let value = random((10.0+10*j)/255.0,(90.0+50*j)/255.0)
+      fill(color[0]*value,color[1]*value,color[2]*value)
+      }
+      else{
+      let value = random((10+(NUM_ROWS-j))/255,(90+50*(NUM_ROWS-j))/255)
+      fill(color[0]*value,color[1]*value,color[2]*value)
+      }
+      
+      let point1X = i*TRIANGLE_HEIGHT
+      let point1Y = j*TRIANGLE_HEIGHT
+      let point2X = (i+1)*TRIANGLE_HEIGHT
+      let point2Y = j*TRIANGLE_HEIGHT
+      let point3X = i*TRIANGLE_HEIGHT
+      let point3Y = (j+1)*TRIANGLE_HEIGHT
+      let point4X = (i+1)*TRIANGLE_HEIGHT
+      let point4Y = (j+1)*TRIANGLE_HEIGHT
+      triangle(point1X,point1Y,point2X,point2Y,point3X,point3Y)
+
+      if(j<NUM_ROWS/2){
+        
+      let value = random((10+10*j)/255,(90+50*j)/255)
+      fill(color[0]*value,color[1]*value,color[2]*value)
+      }
+      else{
+      let value = random(10+10*(NUM_ROWS-j),90+50*(NUM_ROWS-j))
+      fill(color[0]*value,color[1]*value,color[2]*value)
+      }
+      
+      
+      
+triangle(point3X,point3Y,point2X,point2Y,point4X,point4Y)
+      
+    }
+  } 
+
+
+}
+
+function draw() {
+     
+}
