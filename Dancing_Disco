@@ -1,0 +1,44 @@
+function setup() {
+  createCanvas(400, 400, WEBGL);
+  
+  //random detail for the sphere
+  detailX = Math.floor(random(5,25));
+  detailY = Math.floor(random(5,25));
+  
+  //starting color
+  deltaR = 200;
+  deltaG = 200;
+  deltaB = 200;
+  
+  //random rotation speed and direction
+  ySpeed = (Math.floor(random(1000,2000)));
+  posNeg = [-1,1];
+  index = Math.floor(Math.random()*2);
+  sign = posNeg[index];
+  ySpeed *= sign;
+  xSpeed = Math.floor(random(1000,2000));
+  posNeg = [-1,1];
+  index = Math.floor(Math.random()*2);
+  sign = posNeg[index];
+  xSpeed *= sign;
+  
+
+}
+
+
+
+function draw() {
+  background(205, 105, 94);
+  rotateY(millis() / ySpeed);
+  rotateX(millis() / xSpeed);
+  
+  //random shifts in color
+  deltaR += Math.floor(random(-4,5));
+  deltaG += Math.floor(random(-4,5));
+  deltaB += Math.floor(random(-4,5));
+  
+  fill(deltaR, deltaG, deltaB);
+  //this is what causes the sphere to move erratically due to it's changing orientation
+  translate(50, 50);
+  sphere(40, detailX, detailY);
+}
