@@ -21,14 +21,23 @@ function setup() {
   index = Math.floor(Math.random()*2);
   sign = posNeg[index];
   xSpeed *= sign;
-  
-
+  backgroundR = 100;
+  backgroundG = 100;
+  backgroundB = 100;
 }
 
 
 
 function draw() {
-  background(205, 105, 94);
+  
+  
+  
+  backgroundR += Math.floor(random(-2,3));
+  backgroundG += Math.floor(random(-2,3));
+  backgroundB += Math.floor(random(-2,3));
+  
+  
+  background(backgroundR, backgroundG, backgroundB);
   rotateY(millis() / ySpeed);
   rotateX(millis() / xSpeed);
   
