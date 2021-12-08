@@ -1,6 +1,12 @@
+canvaswidth = 400
+canvasheight = 350
+numberofcolumns = 40
+numberofrows = 200
+triangle_height = canvaswidth/numberofcolumns
+
+
 function setup() {
-  createCanvas(400, 400, WEBGL);
-  
+      
   //random detail for the sphere
   detailX = Math.floor(random(5,25));
   detailY = Math.floor(random(5,25));
@@ -21,14 +27,38 @@ function setup() {
   index = Math.floor(Math.random()*2);
   sign = posNeg[index];
   xSpeed *= sign;
-  
-
+   
 }
 
-
+  
+  
 
 function draw() {
-  background(205, 105, 94);
+    createCanvas(canvaswidth, canvasheight, WEBGL);
+  background(90, 120, 205);
+    for(var i = 0;i<numberofcolumns;i++){
+      for(var j = 0;j<numberofrows;j++){
+        stroke(10)
+        if(j<numberofrows/2){
+        
+      fill (225)    
+          
+      let point1X = i*triangle_height
+      let point1Y = j*triangle_height
+      let point2X = (i+1)*triangle_height
+      let point2Y = j*triangle_height
+      let point3X = i*triangle_height
+      let point3Y = (j+1)*triangle_height
+      let point4X = (i+1)*triangle_height
+      let point4Y = (j+1)*triangle_height
+
+triangle(point1X, point1Y, point2X, point2Y, point3X, point3Y)
+triangle(point3X, point3Y, point2X, point2Y, point4X, point4Y)
+          
+        }
+      }
+    }    
+  
   rotateY(millis() / ySpeed);
   rotateX(millis() / xSpeed);
   
@@ -41,4 +71,4 @@ function draw() {
   //this is what causes the sphere to move erratically due to it's changing orientation
   translate(50, 50);
   sphere(40, detailX, detailY);
-}
+}    
